@@ -1,6 +1,6 @@
 # long-thread
 
-A Clojure library for starting and stopping threads. Basically just a wrapper
+A Clojure library for starting and stopping threads. Basically just a wrapper for
 `java.lang.Thread`.
 
 ## Latest version
