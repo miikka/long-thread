@@ -14,10 +14,11 @@
 (def ^:dynamic *dynamic-var* nil)
 
 (deftest test-dynamic-vars-are-conveyed
-  (binding [*dynamic-var* (Object.)]
-    (let [my-promise (promise)
-          my-thread (long-thread/start "Dynamic thread" #(deliver my-promise *dynamic-var*))]
-      (is (= (deref my-promise 10000 :timeout) *dynamic-var*)))))
+  (leak/checking
+    (binding [*dynamic-var* (Object.)]
+      (let [my-promise (promise)
+            my-thread (long-thread/start "Dynamic thread" #(deliver my-promise *dynamic-var*))]
+        (is (= (deref my-promise 10000 :timeout) *dynamic-var*))))))
 
 (deftest test-until-interrupted
   (leak/checking
