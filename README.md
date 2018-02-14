@@ -3,6 +3,17 @@
 A Clojure library for starting and stopping threads. Basically just a wrapper
 `java.lang.Thread`.
 
+## Latest version
+
+[![Clojars Project](http://clojars.org/miikka/long-thread/latest-version.svg)](http://clojars.org/miikka/long-thread)
+
+## Why?
+
+Clojure has plenty fancy tools such as futures for concurrent programming.
+However, sometimes what you need is a good old thread. You could use Java's
+`Thread` directly, but the purpose of this wrapper is to encourage good
+practices such as always naming your threads.
+
 ## Usage
 
 ```clojure
