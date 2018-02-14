@@ -18,7 +18,10 @@
     (binding [*dynamic-var* (Object.)]
       (let [my-promise (promise)
             my-thread (long-thread/start "Dynamic thread" #(deliver my-promise *dynamic-var*))]
-        (is (= (deref my-promise 10000 :timeout) *dynamic-var*))))))
+        (try
+          (is (= (deref my-promise 10000 :timeout) *dynamic-var*))
+          (finally
+            (long-thread/join my-thread)))))))
 
 (deftest test-until-interrupted
   (leak/checking
