@@ -39,3 +39,15 @@
      (while (not (Thread/interrupted))
        ~@body)
      (catch InterruptedException _#)))
+
+(defn running-threads
+  "Get a sequence of running Thread objects."
+  []
+  (keys (Thread/getAllStackTraces)))
+
+(defn threads-by-name
+  "Get a sequence of Thread objects with the given name.
+
+  Thread names are not unique, so there might be more than one."
+  [thread-name]
+  (filter #(= thread-name (.getName %)) (running-threads)))
