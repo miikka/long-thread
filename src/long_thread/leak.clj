@@ -4,7 +4,7 @@
             [long-thread.core :as long-thread]))
 
 (defn ^:no-doc report-leaked [leaked]
-  (let [thread-names (map #(.getName %) leaked)
+  (let [thread-names (map #(.getName ^Thread %) leaked)
         message (str "Leaked threads: " (str/join ", " thread-names))]
     (throw (ex-info message {:type ::thread-leak, :leaked leaked}))))
 

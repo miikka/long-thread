@@ -2,7 +2,7 @@
 
 ;; There's clojure.core/binding-conveyor-fn, but it's marked as private, so
 ;; let's not use it. Let's copy it here instead!
-(defn- wrap-runnable [^Runnable runnable]
+(defn- ^Runnable wrap-runnable [^Runnable runnable]
   (let [frame (clojure.lang.Var/cloneThreadBindingFrame)]
     (fn []
       (clojure.lang.Var/resetThreadBindingFrame frame)
@@ -22,19 +22,19 @@
 
 (defn stop
   "Stop a thread and wait until it's interrupted."
-  [thread]
+  [^Thread thread]
   (doto thread
     (.interrupt)
     (.join)))
 
 (defn join
   "Wait until a thread has stopped."
-  [thread]
+  [^Thread thread]
   (.join thread))
 
 (defn alive?
   "Returns true if the thread is alive, i.e. started and not yet stopped."
-  [thread]
+  [^Thread thread]
   (.isAlive thread))
 
 (defmacro until-interrupted
@@ -58,4 +58,4 @@
 
   Thread names are not unique, so there might be more than one."
   [thread-name]
-  (filter #(= thread-name (.getName %)) (running-threads)))
+  (filter #(= thread-name (.getName ^Thread %)) (running-threads)))

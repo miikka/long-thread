@@ -1,6 +1,7 @@
 # Unreleased
 
 * Convey dynamic bindings to the new threads from the starting thread.
+* Reflection warnings are gone.
 
 # 0.2.0 (2018-02-14)
 
