@@ -1,5 +1,13 @@
 (ns long-thread.core)
 
+;; There's clojure.core/binding-conveyor-fn, but it's marked as private, so
+;; let's not use it. Let's copy it here instead!
+(defn- wrap-runnable [^Runnable runnable]
+  (let [frame (clojure.lang.Var/cloneThreadBindingFrame)]
+    (fn []
+      (clojure.lang.Var/resetThreadBindingFrame frame)
+      (.run runnable))))
+
 (defn start
   "Start a thread.
 
@@ -8,7 +16,7 @@
   :daemon?   -- If truthy, create a daemon thread."
   ([^String thread-name ^Runnable runnable] (start thread-name runnable {}))
   ([^String thread-name ^Runnable runnable options]
-   (doto (Thread. runnable thread-name)
+   (doto (Thread. (wrap-runnable runnable) thread-name)
      (.setDaemon (boolean (:daemon? options)))
      (.start))))
 

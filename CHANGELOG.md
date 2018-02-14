@@ -1,3 +1,7 @@
+# Unreleased
+
+* Convey dynamic bindings to the new threads from the starting thread.
+
 # 0.2.0 (2018-02-14)
 
 * Add `long-thread.core/running-threads` and `long-thread.core/threads-by-name` for inspection.
