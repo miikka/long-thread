@@ -34,6 +34,11 @@ practices such as always naming your threads.
     (long-thread/stop my-thread)))
 ```
 
+## Acknowledgements
+
+The inspiration for this work is `zthread.clj`, a similar library developed by
+Joel Kaasinen and others at ZenRobotics.
+
 ## License
 
 Copyright © 2018 Miikka Koskinen.
