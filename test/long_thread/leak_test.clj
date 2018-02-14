@@ -18,8 +18,8 @@
           (deliver thread-promise (long-thread/start "leaking thread" do-nothing)))
         (do-report {:type :fail, :message nil, :expected 'ExceptionInfo, :actual nil})
         (catch ExceptionInfo e
-          (is (= (.getMessage e) "Leaked threads: leaking thread"))
-          (is (= (ex-data e)
-                 {:type ::leak/thread-leak, :leaked #{(drf thread-promise)}})))
+          (is (= "Leaked threads: leaking thread" (.getMessage e)))
+          (is (= {:type ::leak/thread-leak, :leaked #{(drf thread-promise)}}
+                 (ex-data e))))
         (finally
           (some-> (drf thread-promise) (long-thread/stop)))))))

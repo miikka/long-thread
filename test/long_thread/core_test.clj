@@ -9,7 +9,7 @@
       (let [my-promise (promise)
             my-thread  (long-thread/start "A test thread" #(deliver my-promise :ok))]
         (long-thread/join my-thread)
-        (is (= (deref my-promise 10000 :timeout) :ok))))))
+        (is (= :ok (deref my-promise 10000 :timeout)))))))
 
 (def ^:dynamic *dynamic-var* nil)
 
@@ -19,7 +19,7 @@
       (let [my-promise (promise)
             my-thread (long-thread/start "Dynamic thread" #(deliver my-promise *dynamic-var*))]
         (try
-          (is (= (deref my-promise 10000 :timeout) *dynamic-var*))
+          (is (= *dynamic-var* (deref my-promise 10000 :timeout)))
           (finally
             (long-thread/join my-thread)))))))
 
@@ -33,7 +33,7 @@
         (is (long-thread/alive? my-thread))
         (long-thread/stop my-thread)
         (is (not (long-thread/alive? my-thread)))
-        (is (= (deref my-promise 10000 :timeout) :ok))))))
+        (is (= :ok (deref my-promise 10000 :timeout)))))))
 
 (defn- do-nothing
   []
@@ -45,6 +45,6 @@
     (let [threads (set (for [_ (range 3)]
                          (long-thread/start "threads-by-name test" do-nothing)))]
       (try
-        (is (= (set (long-thread/threads-by-name "threads-by-name test")) threads))
+        (is (= threads (set (long-thread/threads-by-name "threads-by-name test"))))
         (finally
           (run! long-thread/stop threads))))))
