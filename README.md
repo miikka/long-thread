@@ -16,6 +16,8 @@ practices such as always naming your threads.
 
 ## Usage
 
+* [API reference](https://miikka.github.io/long-thread/master/index.html)
+
 ```clojure
 (ns example.core
   (:require [long-thread.core :as long-thread]))
