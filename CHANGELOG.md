@@ -1,6 +1,9 @@
 # Unreleased
 
-* Convey dynamic bindings to the new threads from the starting thread.
+* *BREAKING*: Convey dynamic bindings to the new threads from the starting thread.
+* *BREAKING*: `long-thread.core/start` has been renamed to `long-thread.core/create`.
+* Added `long-thread.core/start` for starting non-started threads.
+* Added `:start?` and `:convey-bindings?` options to `long-thread.core/create`.
 * Reflection warnings are gone.
 
 # 0.2.0 (2018-02-14)

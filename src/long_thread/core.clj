@@ -8,17 +8,30 @@
       (clojure.lang.Var/resetThreadBindingFrame frame)
       (.run runnable))))
 
-(defn start
-  "Start a thread.
+(defn create
+  "Create a thread.
+
+  The thread is started immediately by default.
 
   `options` is a map with the following keys:
 
-  :daemon?   -- If truthy, create a daemon thread."
-  ([^String thread-name ^Runnable runnable] (start thread-name runnable {}))
+  :daemon?          -- If truthy, create a daemon thread. Default: false
+  :start?           -- If truthy, thread is started immediately. Default: true.
+  :convey-bindings? -- If truthy, the bindings for dynamic variables are
+                       conveyed from the starting thread to the new thread.
+                       Default: true."
+  ([^String thread-name ^Runnable runnable] (create thread-name runnable {}))
   ([^String thread-name ^Runnable runnable options]
-   (doto (Thread. (wrap-runnable runnable) thread-name)
-     (.setDaemon (boolean (:daemon? options)))
-     (.start))))
+   (let [runnable (cond-> runnable
+                    (get options :convey-bindings? true) wrap-runnable)]
+     (doto (Thread. runnable thread-name)
+       (.setDaemon (boolean (get options :daemon? false)))
+       (cond-> (get options :start? true) (.start))))))
+
+(defn start
+  "Start a thread."
+  [^Thread thread]
+  (.start thread))
 
 (defn stop
   "Stop a thread and wait until it's interrupted."

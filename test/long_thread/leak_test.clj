@@ -15,7 +15,7 @@
     (let [thread-promise (promise)]
       (try
         (leak/checking
-          (deliver thread-promise (long-thread/start "leaking thread" do-nothing)))
+          (deliver thread-promise (long-thread/create "leaking thread" do-nothing)))
         (do-report {:type :fail, :message nil, :expected 'ExceptionInfo, :actual nil})
         (catch ExceptionInfo e
           (is (= "Leaked threads: leaking thread" (.getMessage e)))

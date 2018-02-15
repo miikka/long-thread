@@ -3,13 +3,30 @@
             [long-thread.core :as long-thread]
             [long-thread.leak :as leak]))
 
-(deftest test-start-join
+(defn- do-nothing
+  []
+  (long-thread/until-interrupted
+   (Thread/sleep 1000)))
+
+(deftest test-create-join
   (leak/checking
-    (testing "A thread can be started and stopped"
+    (testing "A thread can be createed and stopped"
       (let [my-promise (promise)
-            my-thread  (long-thread/start "A test thread" #(deliver my-promise :ok))]
+            my-thread  (long-thread/create "A test thread" #(deliver my-promise :ok))]
         (long-thread/join my-thread)
         (is (= :ok (deref my-promise 10000 :timeout)))))))
+
+(deftest test-create-options
+  (leak/checking
+    (testing ":start?"
+      (let [my-thread (long-thread/create "Non-running thread" do-nothing
+                                          {:start? false})]
+        (try
+          (is (not (long-thread/alive? my-thread)))
+          (long-thread/start my-thread)
+          (is (long-thread/alive? my-thread))
+          (finally
+            (long-thread/stop my-thread)))))))
 
 (def ^:dynamic *dynamic-var* nil)
 
@@ -17,7 +34,8 @@
   (leak/checking
     (binding [*dynamic-var* (Object.)]
       (let [my-promise (promise)
-            my-thread (long-thread/start "Dynamic thread" #(deliver my-promise *dynamic-var*))]
+            my-thread (long-thread/create "Dynamic thread"
+                                          #(deliver my-promise *dynamic-var*))]
         (try
           (is (= *dynamic-var* (deref my-promise 10000 :timeout)))
           (finally
@@ -29,21 +47,16 @@
       (let [my-promise (promise)
             runnable   #(do (long-thread/until-interrupted (Thread/sleep 1000))
                             (deliver my-promise :ok))
-            my-thread  (long-thread/start "Another thread" runnable)]
+            my-thread  (long-thread/create "Another thread" runnable)]
         (is (long-thread/alive? my-thread))
         (long-thread/stop my-thread)
         (is (not (long-thread/alive? my-thread)))
         (is (= :ok (deref my-promise 10000 :timeout)))))))
 
-(defn- do-nothing
-  []
-  (long-thread/until-interrupted
-    (Thread/sleep 1000)))
-
 (deftest test-threads-by-name
   (leak/checking
     (let [threads (set (for [_ (range 3)]
-                         (long-thread/start "threads-by-name test" do-nothing)))]
+                         (long-thread/create "threads-by-name test" do-nothing)))]
       (try
         (is (= threads (set (long-thread/threads-by-name "threads-by-name test"))))
         (finally

@@ -28,7 +28,7 @@ practices such as always naming your threads.
 
 (defn main
   []
-  (let [my-thread (long-thread/start "greetings thread" my-loop)]
+  (let [my-thread (long-thread/create "greetings thread" my-loop)]
     (println "Press enter to stop...")
     (read-line)
     (long-thread/stop my-thread)))
