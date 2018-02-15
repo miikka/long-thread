@@ -1,4 +1,4 @@
-(defproject miikka/long-thread "0.3.0"
+(defproject miikka/long-thread "0.3.1-SNAPSHOT"
   :description "Long-running threads in your Clojure"
   :url "https://github.com/miikka/long-thread"
   :license {:name "Eclipse Public License"
