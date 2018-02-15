@@ -20,6 +20,7 @@
   :convey-bindings? -- If truthy, the bindings for dynamic variables are
                        conveyed from the starting thread to the new thread.
                        Default: true."
+  {:added "0.3.0"}
   ([^String thread-name ^Runnable runnable] (create thread-name runnable {}))
   ([^String thread-name ^Runnable runnable options]
    (let [runnable (cond-> runnable
@@ -30,11 +31,13 @@
 
 (defn start
   "Start a thread."
+  {:added "0.1.0"}
   [^Thread thread]
   (.start thread))
 
 (defn stop
   "Stop a thread and wait until it's interrupted."
+  {:added "0.1.0"}
   [^Thread thread]
   (doto thread
     (.interrupt)
@@ -42,11 +45,13 @@
 
 (defn join
   "Wait until a thread has stopped."
+  {:added "0.1.0"}
   [^Thread thread]
   (.join thread))
 
 (defn alive?
   "Returns true if the thread is alive, i.e. started and not yet stopped."
+  {:added "0.1.0"}
   [^Thread thread]
   (.isAlive thread))
 
@@ -55,6 +60,7 @@
 
   If you catch InterruptedExceptions in the body, this thread won't be
   stopped. If you want the thread to stop, re-throw the exception."
+  {:added "0.1.0"}
   [& body]
   `(try
      (while (not (Thread/interrupted))
@@ -63,6 +69,7 @@
 
 (defn running-threads
   "Get a sequence of running Thread objects."
+  {:added "0.2.0"}
   []
   (keys (Thread/getAllStackTraces)))
 
@@ -70,5 +77,6 @@
   "Get a sequence of Thread objects with the given name.
 
   Thread names are not unique, so there might be more than one."
+  {:added "0.2.0"}
   [thread-name]
   (filter #(= thread-name (.getName ^Thread %)) (running-threads)))

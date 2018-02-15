@@ -23,6 +23,7 @@
 
   :type    -- always has value :long-thread.leak/thread-leak
   :leaked  -- the set of leaked Thread objects"
+  {:added "0.2.0"}
   [& body]
   `(let [threads# (set (long-thread/running-threads))]
      ~@body
