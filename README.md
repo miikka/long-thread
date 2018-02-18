@@ -41,6 +41,11 @@ practices such as always naming your threads.
 The inspiration for this work is `zthread.clj`, a similar library developed by
 Joel Kaasinen and others at ZenRobotics.
 
+## Development guide
+
+* Run tests with `lein test`
+* Generate a test coverage report with `lein cloverage` and look at `target/coverage/index.html`.
+
 ## License
 
 Copyright © 2018 Miikka Koskinen.
