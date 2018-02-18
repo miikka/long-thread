@@ -9,4 +9,5 @@
   :codox {:output-path "doc"
           :source-uri "https://github.com/miikka/long-thread/blob/{version}/{filepath}#L{line}"
           :metadata {:doc/format :markdown}}
-  :deploy-repositories [["releases" :clojars]])
+  :deploy-repositories [["releases" :clojars]]
+  :global-vars {*warn-on-reflection* true})
