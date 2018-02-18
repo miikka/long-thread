@@ -1,4 +1,4 @@
-# long-thread
+# long-thread [![codecov](https://codecov.io/gh/miikka/long-thread/branch/master/graph/badge.svg)](https://codecov.io/gh/miikka/long-thread)
 
 A Clojure library for starting and stopping threads. Basically just a wrapper for
 `java.lang.Thread`.
