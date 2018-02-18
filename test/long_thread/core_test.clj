@@ -33,13 +33,17 @@
 (deftest test-dynamic-vars-are-conveyed
   (leak/checking
     (binding [*dynamic-var* (Object.)]
-      (let [my-promise (promise)
-            my-thread (long-thread/create "Dynamic thread"
-                                          #(deliver my-promise *dynamic-var*))]
+      (let [promise1 (promise)
+            promise2 (promise)
+            thread1 (long-thread/create "Conveyed thread" #(deliver promise1 *dynamic-var*))
+            thread2 (long-thread/create "Non-conveyed thread" #(deliver promise2 *dynamic-var*)
+                                        {:convey-bindings? false})]
         (try
-          (is (= *dynamic-var* (deref my-promise 10000 :timeout)))
+          (is (= *dynamic-var* (deref promise1 10000 :timeout)))
+          (is (= nil (deref promise2 10000 :timeout)))
           (finally
-            (long-thread/join my-thread)))))))
+            (long-thread/join thread1)
+            (long-thread/join thread2)))))))
 
 (deftest test-until-interrupted
   (leak/checking
