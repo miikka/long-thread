@@ -41,6 +41,11 @@ practices such as always naming your threads.
 The inspiration for this work is `zthread.clj`, a similar library developed by
 Joel Kaasinen and others at ZenRobotics.
 
+## See also
+
+* For value-returning one-off tasks, see Clojure's futures, [manifold's futures](http://aleph.io/manifold/deferreds.html#future-vs-manifold-deferred-future), or [java.util.concurrent.ExecutorService](https://docs.oracle.com/javase/7/docs/api/java/util/concurrent/ExecutorService.html).
+* For scheduled tasks (e.g. run once in every minute), see [manifold.time](http://aleph.io/codox/manifold/manifold.time.html), and [ScheduledThreadPoolExecutor](https://docs.oracle.com/javase/7/docs/api/java/util/concurrent/ScheduledThreadPoolExecutor.html).
+
 ## Development guide
 
 * Run tests with `lein test`
