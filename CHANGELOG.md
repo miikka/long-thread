@@ -1,4 +1,4 @@
-# Unreleased
+# 0.3.0 (2018-02-15)
 
 * *BREAKING*: Convey dynamic bindings to the new threads from the starting thread.
 * *BREAKING*: `long-thread.core/start` has been renamed to `long-thread.core/create`.
