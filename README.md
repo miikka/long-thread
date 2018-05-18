@@ -5,7 +5,7 @@ A Clojure library for starting and stopping threads. Basically just a wrapper fo
 
 ## Latest version
 
-[![Clojars Project](http://clojars.org/miikka/long-thread/latest-version.svg)](http://clojars.org/miikka/long-thread)
+[![Clojars Project](https://clojars.org/miikka/long-thread/latest-version.svg)](https://clojars.org/miikka/long-thread)
 
 ## Why?
 
