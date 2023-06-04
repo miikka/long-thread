@@ -1,3 +1,5 @@
+;; SPDX-FileCopyrightText: 2018 Miikka Koskinen
+;; SPDX-License-Identifier: EPL-2.0
 (ns long-thread.leak-test
   (:require  [clojure.test :refer [deftest do-report is testing]]
              [long-thread.core :as long-thread]

@@ -1,0 +1,17 @@
+opqdonut (IRC)
+I think that's missing some of the robustification in stop and join
+
+Miikka
+yeah, probably
+can't remember what, though
+O
+opqdonut (IRC)
+and there were timeouting versions of stop and join
+in addition to the "hard" ones
+and there was optional error handling, :finally and :catch, I think
+and :on-stop
+(for the cases where you want to communicate stopping with something else than interrupt)
+and .checkErrors or something like that
+and right! .stop and .join rethrew errors from the thread
+O
+so you didn't lose them

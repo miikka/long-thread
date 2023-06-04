@@ -1,3 +1,5 @@
+;; SPDX-FileCopyrightText: 2018 Miikka Koskinen
+;; SPDX-License-Identifier: EPL-2.0
 (ns long-thread.core)
 
 ;; There's clojure.core/binding-conveyor-fn, but it's marked as private, so

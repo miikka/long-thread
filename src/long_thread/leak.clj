@@ -1,3 +1,5 @@
+;; SPDX-FileCopyrightText: 2018 Miikka Koskinen
+;; SPDX-License-Identifier: EPL-2.0
 (ns long-thread.leak
   (:require [clojure.set :as set]
             [clojure.string :as str]

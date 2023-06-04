@@ -1,3 +1,8 @@
+<!--
+SPDX-FileCopyrightText: 2018 Miikka Koskinen
+SPDX-License-Identifier: EPL-2.0
+-->
+
 # long-thread [![codecov](https://codecov.io/gh/miikka/long-thread/branch/master/graph/badge.svg)](https://codecov.io/gh/miikka/long-thread) [![cljdoc badge](https://cljdoc.org/badge/miikka/long-thread)](https://cljdoc.org/d/miikka/long-thread/CURRENT)
 
 A Clojure library for starting and stopping threads. Basically just a wrapper for
