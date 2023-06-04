@@ -1,0 +1,17 @@
+# SPDX-FileCopyrightText: 2023 Miikka Koskinen
+# SPDX-License-Identifier: EPL-2.0
+name: Run tests
+
+on:
+  push:
+    branches: [ "master" ]
+  pull_request:
+    branches: [ "master" ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v3
+    - name: Run tests
+      run: lein test
