@@ -7,5 +7,6 @@
   :scm {:name "git", :url "https://github.com/miikka/long-thread"}
   :dependencies [[org.clojure/clojure "1.10.1"]]
   :plugins [[lein-cloverage "1.1.2"]]
+  :repositories [["clojars" {:url "https://repo.clojars.org", :sign-releases false}]]
   :deploy-repositories [["releases" :clojars]]
   :global-vars {*warn-on-reflection* true})

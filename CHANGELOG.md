@@ -3,7 +3,7 @@ SPDX-FileCopyrightText: 2018 Miikka Koskinen
 SPDX-License-Identifier: EPL-2.0
 -->
 
-# Unreleased
+# 0.3.1 (2023-06-04)
 
 * Use Markdown tables in docstrings
 
