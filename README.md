@@ -60,4 +60,4 @@ Joel Kaasinen and others at ZenRobotics.
 
 Copyright Miikka Koskinen.
 
-Available under the terms of the Eclipse Public License 2.0, see `LICENSE`.
+Available under the terms of the Eclipse Public License 2.0, see `LICENSES/EPL-2.0.txt`.

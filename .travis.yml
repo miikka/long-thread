@@ -1,8 +1,0 @@
-# SPDX-FileCopyrightText: 2018 Miikka Koskinen
-# SPDX-License-Identifier: EPL-2.0
-
-language: clojure
-
-after_success:
-  - lein cloverage --codecov
-  - bash <(curl -s https://codecov.io/bash)
