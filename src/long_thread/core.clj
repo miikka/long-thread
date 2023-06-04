@@ -17,11 +17,11 @@
 
   `options` is a map with the following keys:
 
-  :daemon?          -- If truthy, create a daemon thread. Default: false
-  :start?           -- If truthy, thread is started immediately. Default: true.
-  :convey-bindings? -- If truthy, the bindings for dynamic variables are
-                       conveyed from the starting thread to the new thread.
-                       Default: true."
+  | key                 | description |
+  |---------------------|-------------|
+  | `:daemon?`          | If truthy, create a daemon thread. Default: false
+  | `:start?`           | If truthy, thread is started immediately. Default: true.
+  | `:convey-bindings?` | If truthy, the bindings for dynamic variables are conveyed from the starting thread to the new thread. Default: true."
   {:added "0.3.0"}
   ([^String thread-name ^Runnable runnable] (create thread-name runnable {}))
   ([^String thread-name ^Runnable runnable options]

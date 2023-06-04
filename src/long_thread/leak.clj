@@ -23,8 +23,10 @@
 
   The exception is an ExceptionInfo with the following keys:
 
-  :type    -- always has value :long-thread.leak/thread-leak
-  :leaked  -- the set of leaked Thread objects"
+  | key       | description |
+  |-----------|-------------|
+  | `:type`   | always has value :long-thread.leak/thread-leak
+  | `:leaked` | the set of leaked Thread objects"
   {:added "0.2.0"}
   [& body]
   `(let [threads# (set (long-thread/running-threads))]

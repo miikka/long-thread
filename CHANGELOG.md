@@ -3,6 +3,10 @@ SPDX-FileCopyrightText: 2018 Miikka Koskinen
 SPDX-License-Identifier: EPL-2.0
 -->
 
+# Unreleased
+
+* Use Markdown tables in docstrings
+
 # 0.3.0 (2018-02-15)
 
 * *BREAKING*: Convey dynamic bindings to the new threads from the starting thread.
