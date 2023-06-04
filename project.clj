@@ -1,6 +1,6 @@
 ;; SPDX-FileCopyrightText: 2018 Miikka Koskinen
 ;; SPDX-License-Identifier: EPL-2.0
-(defproject miikka/long-thread "0.3.1"
+(defproject miikka/long-thread "0.3.2-SNAPSHOT"
   :description "Long-running threads in your Clojure"
   :url "https://github.com/miikka/long-thread"
   :license {:name "EPL-2.0", :url "https://www.eclipse.org/legal/epl-2.0/"}
